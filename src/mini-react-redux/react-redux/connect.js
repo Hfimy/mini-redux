@@ -22,14 +22,25 @@ export const connect = (
       // 订阅更新，每当执行store.dispatch时都会执行监听函数
       this.context.store.subscribe(() => this.mapToProps());
     }
+
+    // 如何实现类似PureComponent
     shouldComponentUpdate(nextProps, nextState) {
-      if (nextState.props === this.state.props) {
-        return false;
+      // 添加shallow compare
+      const nextPropsKeys = Object.keys(nextProps);
+      const nextStateKeys = Object.keys(nextState);
+      if (
+        nextPropsKeys.some(key => nextProps[key] !== this.props[item]) ||
+        nextStateKeys.some(key => nextState[key] !== this.state[key])
+      ) {
+        return true;
       }
-      return true;
+      return false;
     }
     mapToProps() {
-      const stateToProps = mapStateToProps(this.context.store.getState());
+      const stateToProps = mapStateToProps(
+        this.context.store.getState(),
+        this.state.props
+      );
       const dispatchToProps = bindActionCreators(
         mapDispatchToProps,
         this.context.store.dispatch,

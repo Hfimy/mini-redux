@@ -22,9 +22,8 @@ export default function createStore(reducer, preloadedState, enhancer) {
     if (typeof enhancer !== 'function') {
       throw new Error('Expected the enhancer to be a function.');
     }
-
-    // 此处针对enhancer特殊处理，直接返回
-    // return enhancer(createStore)(reducer, preloadedState)
+    // 此处enhancer处理
+    return enhancer(createStore)(reducer, preloadedState);
   }
 
   let currentState = preloadedState;
@@ -63,7 +62,7 @@ export default function createStore(reducer, preloadedState, enhancer) {
     return action;
   }
 
-  // 生成store时，派发一个初始化的action,使得reducer返回初始值
+  // 生成store时，派发一个初始化的action,使得store.getState()返回初始值
   dispatch({ type: '@@redux/INIT' });
 
   return {

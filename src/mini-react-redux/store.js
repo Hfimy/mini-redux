@@ -1,4 +1,6 @@
-import { createStore } from './redux';
+import { createStore, applyMiddleware } from './redux';
+import thunk from './redux-thunk';
+import arrayThunk from './redux-array-thunk';
 
 // actionType
 const INCREMENT = 'INCREMENT';
@@ -11,7 +13,14 @@ export const increment = () => ({
 export const decrement = () => ({
   type: DECREMENT
 });
-
+export const incrementAsync = () => {
+  return dispatch => {
+    setTimeout(() => dispatch(increment()), 1000);
+  };
+};
+export const incrementTwice = () => {
+  return [increment(), incrementAsync()];
+};
 // reducer
 function counter(state = { apple: 0 }, action) {
   switch (action.type) {
@@ -28,4 +37,4 @@ function counter(state = { apple: 0 }, action) {
   }
 }
 
-export default createStore(counter);
+export default createStore(counter, applyMiddleware(thunk, arrayThunk));

@@ -3,8 +3,8 @@
 //     return dispatch(actionCreator.apply(this, arguments));
 //   };
 // }
-const bindActionCreator = (actionCreator, dispatch) => () =>
-  dispatch(actionCreator(...arguments));
+const bindActionCreator = (actionCreator, dispatch) => (...args) =>
+  dispatch(actionCreator(...args));
 
 export default function bindActionCreators(actionCreators, dispatch, ownProps) {
   if (typeof actionCreators === 'function') {

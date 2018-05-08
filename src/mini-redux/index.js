@@ -1,6 +1,6 @@
 import React from 'react';
 
-import store, { increment, decrement } from './store';
+import store, { increment, decrement, incrementAsync } from './store';
 
 export default class MiniRedux extends React.Component {
   state = {
@@ -27,6 +27,9 @@ export default class MiniRedux extends React.Component {
   onDecrement() {
     store.dispatch(decrement());
   }
+  onIncrementAsync() {
+    store.dispatch(incrementAsync());
+  }
   render() {
     return (
       <div className="panel">
@@ -35,7 +38,7 @@ export default class MiniRedux extends React.Component {
         <div>
           <button onClick={this.onIncrement}>买一个</button>
           <button onClick={this.onDecrement}>吃一个</button>
-          {/* <button onClick={this.onIncrementAsync}>一会去隔壁家买一个</button> */}
+          <button onClick={this.onIncrementAsync}>一会去隔壁家买一个</button>
         </div>
       </div>
     );
