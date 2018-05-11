@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider, connect } from '../custom_modules/react-redux';
+import { Provider, connect } from '../custom_modules/mini-react-redux';
 import store, {
   increment,
   decrement,
@@ -10,10 +10,13 @@ import store, {
 } from './store';
 
 @connect(
-  state => ({
-    fruitName: state.fruit.name,
-    count: state.counter.number
-  }),
+  (state, ownProps) => {
+    console.log('ownProps', ownProps)
+    return {
+      fruitName: state.fruit.name,
+      count: state.counter.number
+    }
+  },
   {
     increment,
     decrement,
@@ -49,6 +52,6 @@ class MiniReactRedux extends React.Component {
 // 为了不影响外部，在内部使用Provider进行包裹
 export default () => (
   <Provider store={store}>
-    <MiniReactRedux />
+    <MiniReactRedux name='ht' />
   </Provider>
 );

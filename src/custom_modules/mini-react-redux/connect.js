@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { bindActionCreators } from '../redux';
+import { bindActionCreators } from '../mini-redux';
 
 // connect是一个高阶函数
 export const connect = (
@@ -29,19 +29,20 @@ export const connect = (
       const nextPropsKeys = Object.keys(nextProps);
       const nextStateKeys = Object.keys(nextState);
       return (
-        nextPropsKeys.some(key => nextProps[key] !== this.props[item]) ||
+        nextPropsKeys.some(key => nextProps[key] !== this.props[key]) ||
         nextStateKeys.some(key => nextState[key] !== this.state[key])
       );
     }
     mapToProps() {
+      const ownProps = this.props;
       const stateToProps = mapStateToProps(
         this.context.store.getState(),
-        this.state.props
+        ownProps
       );
       const dispatchToProps = bindActionCreators(
         mapDispatchToProps,
         this.context.store.dispatch,
-        this.state.props
+        ownProps
       );
       this.setState({
         props: { ...this.state.props, ...stateToProps, ...dispatchToProps }

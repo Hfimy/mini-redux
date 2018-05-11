@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose, combineReducers } from '../custom_modules/redux';
+import { createStore, applyMiddleware, compose, combineReducers } from '../custom_modules/mini-redux';
 import thunk from '../custom_modules/redux-thunk';
 import arrayThunk from '../custom_modules/redux-array-thunk';
 

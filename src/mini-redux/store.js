@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from '../custom_modules/redux';
+import { createStore, applyMiddleware } from '../custom_modules/mini-redux';
 import thunk from '../custom_modules/redux-thunk';
 
 // actionType
