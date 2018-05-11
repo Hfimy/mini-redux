@@ -1,21 +1,26 @@
 import React from 'react';
-import { Provider, connect } from './react-redux';
+import { Provider, connect } from '../custom_modules/react-redux';
 import store, {
   increment,
   decrement,
   incrementAsync,
-  incrementTwice
+  incrementTwice,
+  buyApple,
+  buyBanana
 } from './store';
 
 @connect(
   state => ({
-    apple: state.apple
+    fruitName: state.fruit.name,
+    count: state.counter.number
   }),
   {
     increment,
     decrement,
     incrementAsync,
-    incrementTwice
+    incrementTwice,
+    buyApple,
+    buyBanana
   }
 )
 class MiniReactRedux extends React.Component {
@@ -23,7 +28,9 @@ class MiniReactRedux extends React.Component {
     return (
       <div className="panel">
         <h3>Mini-React-Redux</h3>
-        <div>苹果数量：{this.props.apple}</div>
+        <div>
+          {this.props.fruitName}数量：{this.props.count}
+        </div>
         <div>
           <button onClick={this.props.increment}>买一个</button>
           <button onClick={this.props.decrement}>吃一个</button>
@@ -31,6 +38,8 @@ class MiniReactRedux extends React.Component {
             一会去隔壁家买一个
           </button>
           <button onClick={this.props.incrementTwice}>一家买一个</button>
+          <button onClick={this.props.buyBanana}>买香蕉</button>
+          <button onClick={this.props.buyApple}>买苹果</button>
         </div>
       </div>
     );

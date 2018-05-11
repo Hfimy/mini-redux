@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware } from './redux';
-import thunk from './redux-thunk';
+import { createStore, applyMiddleware } from '../custom_modules/redux';
+import thunk from '../custom_modules/redux-thunk';
 
 // actionType
 const INCREMENT = 'INCREMENT';

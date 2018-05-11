@@ -10,7 +10,7 @@ export default function applyMiddleware(...middlewares) {
       dispatch: (...args) => dispatch(...args)
     };
 
-    // 上面的middlewareApi里调用的dispatch在此处定义
+    // 上面的middlewareApi里调用的dispatch是在下面定义的，可以理解为类似运行时绑定，这里先传递，后赋值
     // let dispatch = middleware(middlewareAPI)(store.dispatch); //只传入一个中间件时可以这样写
 
     const middlewareChain = middlewares.map(middleware =>

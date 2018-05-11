@@ -13,10 +13,7 @@ export default class Redux extends React.Component {
     this.unsubscribe();
   }
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.store === this.state.store) {
-      return false;
-    }
-    return true;
+    return nextState.store !== this.state.store;
   }
   updateStore() {
     this.setState({ store: store.getState() });

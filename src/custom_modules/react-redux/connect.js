@@ -28,13 +28,10 @@ export const connect = (
       // 添加shallow compare
       const nextPropsKeys = Object.keys(nextProps);
       const nextStateKeys = Object.keys(nextState);
-      if (
+      return (
         nextPropsKeys.some(key => nextProps[key] !== this.props[item]) ||
         nextStateKeys.some(key => nextState[key] !== this.state[key])
-      ) {
-        return true;
-      }
-      return false;
+      );
     }
     mapToProps() {
       const stateToProps = mapStateToProps(
