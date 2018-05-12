@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from '../mini-redux';
 
 // connect是一个高阶函数
-export const connect = (
-  mapStateToProps = state => state,
-  mapDispatchToProps = {}
-) => Component => {
+export const connect = (mapStateToProps = state => state, mapDispatchToProps = {}) => Component => {
   return class WrappedComponent extends React.Component {
     static contextTypes = {
       store: PropTypes.object

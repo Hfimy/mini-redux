@@ -21,12 +21,12 @@ export default function bindActionCreators(actionCreators, dispatch, ownProps) {
   //     boundActionCreators[key] = bindActionCreator(actionCreators[key], dispatch);
   //   }
 
-  Object.keys(actionCreators).reduce((accumulator, currentValue) => {
-    accumulator[currentValue] = bindActionCreator(
-      actionCreators[currentValue],
+  Object.keys(actionCreators).reduce((boundActionCreators, actionKey) => {
+    boundActionCreators[actionKey] = bindActionCreator(
+      actionCreators[actionKey],
       dispatch
     );
-    return accumulator;
+    return boundActionCreators;
   }, boundActionCreators);
 
   return boundActionCreators;
