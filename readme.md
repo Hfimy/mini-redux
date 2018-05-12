@@ -1,6 +1,4 @@
 
-<br/>
-
 #### mini-redux、mini-react-redux
 
 &emsp;&emsp;本项目根据参考redux、react-redux源码，自定义实现了一个简化版的mini-redux、mini-react-redux，去除了官方库的一些额外判断以及错误处理。经测试，在已实现的功能上完全可以替代官方库正确运行。
